@@ -17,6 +17,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
+/*functions prototype mondatory tasks*/
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
@@ -24,10 +25,15 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 
+/*advanced tasks*/
+void shell_sort(int *array, size_t size);
+
 /*helpful functions*/
 void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2);
 
 int lomuto_partition(int *array, int low, int high, size_t size);
 void quicksort_recursive(int *array, int low, int high, size_t size);
+
+size_t calculate_gap(size_t size);
 
 #endif /* SORT_H */
