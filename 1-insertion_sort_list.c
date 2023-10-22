@@ -24,30 +24,28 @@ void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2)
 }
 
 /**
- * insertion_sort_list - Sorts a doubly linked list using
- * Insertion sort algorithm
+ * insertion_sort_list - Sorts a doubly linked list
+ * using Insertion sort algorithm
  * @list: Pointer to the pointer to the head of the list
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current, *temp, *prev;
+	listint_t *current, *next_node;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	if (!list || !*list || !(*list)->next)
 		return;
 
-	current = (*list)->next;
+	current = next_node = (*list)->next;
 
-	while (current != NULL)
+	while (next_node)
 	{
-		temp = current;
-		prev = current->prev;
+		next_node = next_node->next;
 
-		while (prev != NULL && temp->n < prev->n)
+		while (current->prev && current->n < current->prev->n)
 		{
-			swap_nodes(list, temp, prev);
+			swap_nodes(list, current, current->prev);
 			print_list(*list);
-			prev = temp->prev;
 		}
-		current = current->next;
+		current = next_node;
 	}
 }
