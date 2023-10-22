@@ -35,17 +35,24 @@ void insertion_sort_list(listint_t **list)
 	if (!list || !*list || !(*list)->next)
 		return;
 
-	current = next_node = (*list)->next;
+	current = (*list)->next;
 
-	while (next_node)
+	while (current)
 	{
-		next_node = next_node->next;
+		next_node = current;
+		current = current->next;
 
-		while (current->prev && current->n < current->prev->n)
+		while (next_node && next_node->prev)
 		{
-			swap_nodes(list, current, current->prev);
-			print_list(*list);
+			if (next_node->prev->n > next_node->n)
+			{
+				swap_nodes(list, next_node->prev, next_node);
+				if (!next_node->prev)
+					*list = next_node;
+				print_list(*list);
+			}
+			else
+				next_node = next_node->prev;
 		}
-		current = next_node;
 	}
 }
